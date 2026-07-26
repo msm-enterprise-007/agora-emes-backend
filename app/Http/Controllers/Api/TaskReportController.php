@@ -45,12 +45,10 @@ class TaskReportController extends Controller
         );
     }
 
-    public function destroy(TaskReport $taskReport): JsonResponse
-    {
-        $taskReport->delete();
+    public function destroy(TaskReport $taskReport): \Illuminate\Http\Response
+{
+    $taskReport->delete();
 
-        return response()->json([
-            'message' => 'Compte rendu supprimé avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }

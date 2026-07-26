@@ -7,6 +7,7 @@ use App\Http\Requests\StoreConfigRequest;
 use App\Http\Requests\UpdateConfigRequest;
 use App\Models\Config;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class ConfigController extends Controller
 {
@@ -36,12 +37,10 @@ class ConfigController extends Controller
         return response()->json($config);
     }
 
-    public function destroy(Config $config): JsonResponse
-    {
-        $config->delete();
+   public function destroy(Config $config): Response
+{
+    $config->delete();
 
-        return response()->json([
-            'message' => 'Configuration supprimée avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }

@@ -45,12 +45,10 @@ class FormationController extends Controller
         );
     }
 
-    public function destroy(Formation $formation): JsonResponse
-    {
-        $formation->delete();
+    public function destroy(Formation $formation): \Illuminate\Http\Response
+{
+    $formation->delete();
 
-        return response()->json([
-            'message' => 'Formation supprimée avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }

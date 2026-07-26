@@ -45,12 +45,10 @@ class AuditLogController extends Controller
         );
     }
 
-    public function destroy(AuditLog $auditLog): JsonResponse
-    {
-        $auditLog->delete();
+  public function destroy(AuditLog $auditLog): \Illuminate\Http\Response
+{
+    $auditLog->delete();
 
-        return response()->json([
-            'message' => 'Journal d’audit supprimé avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }

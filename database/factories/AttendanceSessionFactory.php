@@ -28,6 +28,10 @@ class AttendanceSessionFactory extends Factory
 
             'break_minutes' => 0,
 
+            'late_minutes' => 0,
+            
+            'arrival_status' => 'on_time',
+
             'status' => 'present',
 
             'is_verified' => false,

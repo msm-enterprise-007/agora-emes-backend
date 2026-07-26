@@ -45,12 +45,10 @@ class NotificationController extends Controller
         );
     }
 
-    public function destroy(Notification $notification): JsonResponse
-    {
-        $notification->delete();
+   public function destroy(Notification $notification): \Illuminate\Http\Response
+{
+    $notification->delete();
 
-        return response()->json([
-            'message' => 'Notification supprimée avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }

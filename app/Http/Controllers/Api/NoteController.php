@@ -45,12 +45,10 @@ class NoteController extends Controller
         );
     }
 
-    public function destroy(Note $note): JsonResponse
-    {
-        $note->delete();
+   public function destroy(Note $note): \Illuminate\Http\Response
+{
+    $note->delete();
 
-        return response()->json([
-            'message' => 'Note supprimée avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }

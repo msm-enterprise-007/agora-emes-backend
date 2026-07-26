@@ -34,18 +34,16 @@ class RoleController extends Controller
         return response()->json($role);
     }
 
-    public function destroy(Role $role): JsonResponse
-    {
-        if ($role->users()->exists()) {
-            return response()->json([
-                'message' => 'Impossible de supprimer un rôle déjà attribué à des utilisateurs.'
-            ], 422);
-        }
-
-        $role->delete();
-
+   public function destroy(Role $role): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+{
+    if ($role->users()->exists()) {
         return response()->json([
-            'message' => 'Rôle supprimé avec succès.'
-        ]);
+            'message' => 'Impossible de supprimer un rôle déjà attribué à des utilisateurs.'
+        ], 422);
     }
+
+    $role->delete();
+
+    return response()->noContent();
+}
 }

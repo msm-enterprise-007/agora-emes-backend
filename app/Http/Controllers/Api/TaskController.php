@@ -45,12 +45,10 @@ class TaskController extends Controller
         );
     }
 
-    public function destroy(Task $task): JsonResponse
-    {
-        $task->delete();
+    public function destroy(Task $task): \Illuminate\Http\Response
+{
+    $task->delete();
 
-        return response()->json([
-            'message' => 'Tâche supprimée avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }

@@ -45,12 +45,10 @@ class AttendanceController extends Controller
         );
     }
 
-    public function destroy(AttendanceSession $attendance): JsonResponse
-    {
-        $attendance->delete();
+   public function destroy(AttendanceSession $attendance): \Illuminate\Http\Response
+{
+    $attendance->delete();
 
-        return response()->json([
-            'message' => 'Session de présence supprimée avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }
