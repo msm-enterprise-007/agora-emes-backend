@@ -130,4 +130,29 @@ class DeviceControllerTest extends TestCase
             'is_authorized' => false,
         ]);
     }
+
+    public function test_authenticated_user_can_delete_a_device(): void
+{
+    $role = \App\Models\Role::factory()->create();
+
+    $user = \App\Models\User::factory()->create([
+        'role_id' => $role->id,
+    ]);
+
+    $device = \App\Models\Device::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $this->actingAs($user);
+
+    $response = $this->deleteJson(
+        "/api/devices/{$device->id}"
+    );
+
+    $response->assertNoContent();
+
+    $this->assertSoftDeleted('devices', [
+        'id' => $device->id,
+    ]);
+}
 }

@@ -45,12 +45,10 @@ class DeviceController extends Controller
         );
     }
 
-    public function destroy(Device $device): JsonResponse
-    {
-        $device->delete();
+   public function destroy(Device $device): \Illuminate\Http\Response
+{
+    $device->delete();
 
-        return response()->json([
-            'message' => 'Appareil supprimé avec succès.'
-        ]);
-    }
+    return response()->noContent();
+}
 }
