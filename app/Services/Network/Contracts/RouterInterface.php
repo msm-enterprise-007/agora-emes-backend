@@ -7,14 +7,19 @@ use App\Services\Network\DTO\NetworkDevice;
 interface RouterInterface
 {
     /**
-     * Vérifie que le routeur est joignable.
-     */
-    public function ping(): bool;
-
-    /**
-     * Retourne les appareils connectés au routeur.
+     * Retourne tous les appareils actuellement connectés.
      *
      * @return NetworkDevice[]
      */
-    public function connectedDevices(): array;
+    public function getConnectedDevices(): array;
+
+    /**
+     * Retourne les informations du routeur.
+     */
+    public function getRouterInfo(): array;
+
+    /**
+     * Vérifie que le routeur est joignable.
+     */
+    public function isReachable(): bool;
 }
