@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ConfigController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\AuditLogController;
 use App\Http\Controllers\Api\AttendanceActionController;
+use App\Http\Controllers\Api\NetworkController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/internship-applications',[InternshipApplicationController::class, 'store']);
@@ -48,6 +49,34 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('attendance-sessions/{attendanceSession}/break-out',[AttendanceActionController::class, 'breakOut']);
     Route::post('attendance-sessions/{attendanceSession}/break-in',[AttendanceActionController::class, 'breakIn']);
     Route::post('attendance-sessions/{attendanceSession}/check-out',[AttendanceActionController::class, 'checkOut']);
+
+    Route::prefix('network')->group(function () {
+        Route::get('/info', [NetworkController::class, 'info']);
+        Route::get('/devices', [NetworkController::class, 'devices']);
+        Route::post('/block/{mac}', [NetworkController::class, 'block']);
+        Route::post('/authorize/{mac}', [NetworkController::class, 'authorize']);
+        Route::get('/leases', [NetworkController::class, 'leases']);
+        Route::get('/arp', [NetworkController::class, 'arp']);
+        Route::get('/neighbors', [NetworkController::class, 'neighbors']);
+        Route::get('/wireless-clients', [NetworkController::class, 'wirelessClients']);
+        Route::get('/hotspot/users', [NetworkController::class, 'hotspotUsers']);
+        Route::get('/hotspot/active', [NetworkController::class, 'activeHotspotUsers']);
+        Route::get('/hotspot/servers', [NetworkController::class, 'hotspotServers']);
+        Route::get('/health', [NetworkController::class, 'health']);
+        Route::get('/clock', [NetworkController::class, 'clock']);
+        Route::get('/dns', [NetworkController::class, 'dns']);
+        Route::get('/ip-addresses', [NetworkController::class, 'ipAddresses']);
+        Route::get('/routes', [NetworkController::class, 'routes']);
+        Route::get('/firewall/rules', [NetworkController::class, 'firewallRules']);
+        Route::get('/bridge/hosts', [NetworkController::class, 'bridgeHosts']);
+        Route::get('/bridge/ports', [NetworkController::class, 'bridgePorts']);
+        Route::get('/logs', [NetworkController::class, 'logs']);
+        Route::post('/reboot', [NetworkController::class, 'reboot']);
+        Route::post('/shutdown', [NetworkController::class, 'shutdown']);
+        Route::post('/backup', [NetworkController::class, 'backup']);
+        Route::get('/backups', [NetworkController::class, 'backups']); 
+        Route::get('/status', [NetworkController::class, 'status']);     
+    });
 
 
 });
